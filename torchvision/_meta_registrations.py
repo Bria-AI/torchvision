@@ -160,7 +160,7 @@ def meta_ps_roi_pool_backward(
     return grad.new_empty((batch_size, channels, height, width))
 
 
-@torch.library.register_fake("torchvision::nms")
+#@torch.library.register_fake("torchvision::nms") A BUG THAT NEED TO BE FIXED IN FEUTURE VERSIONS
 def meta_nms(dets, scores, iou_threshold):
     torch._check(dets.dim() == 2, lambda: f"boxes should be a 2d tensor, got {dets.dim()}D")
     torch._check(dets.size(1) == 4, lambda: f"boxes should have 4 elements in dimension 1, got {dets.size(1)}")
